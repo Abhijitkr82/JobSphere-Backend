@@ -12,7 +12,17 @@ const app = express()
 
 connectDB()
 
-app.use(cors())
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://job-sphere-inky.vercel.app",
+      "https://job-sphere-anijv6v6v-abhijitkr82s-projects.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: true,
+  })
+);
 app.use(express.json())
 app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobRoutes);
